@@ -1,24 +1,21 @@
 #!/bin/bash
 
-# automate the linux enviroment setup
+# requirement 1
+# automate the process of provisioning a new linux virtual machine
 
-# if ! [ $(uname -r) | grep \#\d*-(\w)]: then
-
-
-# case $linux_family in
-#     ubuntu) ## use apt
-#     redhat) ## use yum
-#     opensuse) ## use zypper
-# esac
+# next script, configure for redhat and opensuse as well
 
 # Install ubuntu
-apt update
-apt upgrade -y
-apt install build-essential curl file git
+sudo apt update
+sudo apt upgrade
+sudo apt install build-essential curl file git
+# curl provides source packages
+# The build-essentials package is a reference for all the packages needed to compile a Debian package
 
 
 # Install Brew
-echo sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
+# https://docs.brew.sh/Homebrew-on-Linux
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
 
 # to add Homebrew to your PATH and to your bash shell profile script, ~/.profile on Debian/Ubuntu 
 test -d ~/.linuxbrew && eval $(~/.linuxbrew/bin/brew shellenv)
@@ -27,10 +24,7 @@ test -r ~/.bash_profile && echo "eval \$($(brew --prefix)/bin/brew shellenv)" >>
 echo "eval \$($(brew --prefix)/bin/brew shellenv)" >>~/.profile
 
 # Installing Git azure-cli Linux
-
 brew install git
 brew install azure-cli
 brew install gcc
 brew install node
-
-

@@ -1,13 +1,14 @@
 #!/bin/bash
-
-# does node exist
+# find out if node exists
+# The Linux which command is used to find the location of a program
+# -z checks for an empty string
 if [ -z "$(which node)" ]; then
     echo "install node"
 exit 1
 fi
 
 start () {
-
+    # check to see if the package.json contains 'start'
     check1=$(cat package.json | grep -E 'start')
 
     if [ -z "$check1"]; then
@@ -15,12 +16,12 @@ start () {
     exit 1
     fi
     
-    # runs the command npm start if it exists in the package.json
+# This runs an arbitrary command specified in the package’s "start" property of its "scripts" object.
     npm start
 }
 
 stop () {
-
+    # check to see if the package.json contains 'stop'
     check2=$(cat package.json | grep -E 'stop')
 
     if [ -z "$check2"]; then
@@ -28,6 +29,7 @@ stop () {
     exit 1
     fi
 
+    # This runs a package’s “stop” script, if one was provided.
     npm stop
 }
 
@@ -37,30 +39,9 @@ command=$1
 case $command in
     "start" ) start ;;
     "stop" ) stop ;;
+    "*" ) echo "need to start or stop a command";;
 esac
 
 exit 0
-# start_node()
-# {
-#     file=$1
-
-#     # check to see if the file exist if it does, run node file
-#     if [ -e $file ]; then
-#         node $file
-#         echo "$file"
-#         # add conditional for package.json
-#     else
-#         echo "no file"
-#     fi
-# }
-
-# #kill node
-
-# stop-node()
-# {
-#     file=$1
-#     output=$(kill -INT $$)
-#     echo $output
-# }
-
-
+# https://docs.npmjs.com/misc/scripts
+# The “scripts” property is a dictionary containing script commands that are run at various times in the lifecycle of your package. The key is the lifecycle event, and the value is the command to run at that point.

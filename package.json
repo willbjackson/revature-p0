@@ -1,12 +1,20 @@
 {
   "name": "revature-p0",
   "version": "1.0.0",
-  "description": "",
+  "description": "��#\u0000 \u0000r\u0000e\u0000v\u0000a\u0000t\u0000u\u0000r\u0000e\u0000-\u0000p\u00000\u0000\r\u0000 \u0000",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "Will Jackson <wbjackson218@gmail.com>",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/willbjackson/revature-p0.git"
+  },
+  "bugs": {
+    "url": "https://github.com/willbjackson/revature-p0/issues"
+  },
+  "homepage": "https://github.com/willbjackson/revature-p0#readme"
 }
