@@ -19,51 +19,60 @@ if ! [ -d $nd ]; then
   exit 1
 fi
 
-cd $nd
+## checks to see if things are in the directory 
+## -a means it shows all items in the directory
+if [ -n "$(ls -a $nd)" ]; then
+    echo "this directory is not empty"
+    exit 1
+fi
+
 # create a web node based project
 ## docker
-mkdir /.docker
+cd $nd
+# set up new npm package with a default package.json file
+# https://docs.npmjs.com/cli/init
+npm init
+
+## directory strucker ## 
+mkdir .docker
 
 touch \
-  /.docker/dockerfile \
-  /.docker/dockerup.yaml
+.docker/dockerfile \
+.docker/dockerup.yaml
 
 ## github
 mkdir -p \
-  /.github/ISSUE_TEMPLATE \
-  /.github/PULL_REQUEST_TEMPLATE
+.github/ISSUE_TEMPLATE \
+.github/PULL_REQUEST_TEMPLATE
 
 touch \
-  /.github/ISSUE_TEMPLATE/issue-template.md \
-  /.github/PULL_REQUEST_TEMPLATE/pull-request-template.md
+.github/ISSUE_TEMPLATE/issue-template.md \
+.github/PULL_REQUEST_TEMPLATE/pull-request-template.md
 
 touch \
-  /.github/CODE-OF-CONDUCT.md \
-  /.github/CONTRIBUTING.md
+.github/CODE-OF-CONDUCT.md \
+.github/CONTRIBUTING.md
 
 ## root
 mkdir \
-  /client \
-  /src \
+client \
+src \
+test
 
 touch \
-  /client/.gitkeep \
-  /src/.gitkeep \
-  /test/.gitkeep
+client/.gitkeep \
+src/.gitkeep \
+test/.gitkeep
 
 touch \
-  /.azureup.yaml \
-  /.dockerignore \
-  /.editorconfig \
-  /.gitignore \
-  /.markdownlint.yaml \
-  /CHANGELOG.md \
-  /LICENSE.txt \
-  /README.md
-
-# set up new npm package with a default package.json file
-# https://docs.npmjs.com/cli/init
-npm init -y
+.azureup.yaml \
+.dockerignore \
+.editorconfig \
+.gitignore \
+.markdownlint.yaml \
+CHANGELOG.md \
+LICENSE.txt \
+README.md
 
 username=$2
 useremail=$3
