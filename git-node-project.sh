@@ -19,47 +19,47 @@ if ! [ -d $nd ]; then
   exit 1
 fi
 
-cd ~
+cd $nd
 # create a web node based project
 ## docker
-mkdir $nd/.docker
+mkdir /.docker
 
 touch \
-  $nd/.docker/dockerfile \
-  $nd/.docker/dockerup.yaml
+  /.docker/dockerfile \
+  /.docker/dockerup.yaml
 
 ## github
 mkdir -p \
-  $nd/.github/ISSUE_TEMPLATE \
-  $nd/.github/PULL_REQUEST_TEMPLATE
+  /.github/ISSUE_TEMPLATE \
+  /.github/PULL_REQUEST_TEMPLATE
 
 touch \
-  $nd/.github/ISSUE_TEMPLATE/issue-template.md \
-  $nd/.github/PULL_REQUEST_TEMPLATE/pull-request-template.md
+  /.github/ISSUE_TEMPLATE/issue-template.md \
+  /.github/PULL_REQUEST_TEMPLATE/pull-request-template.md
 
 touch \
-  $nd/.github/CODE-OF-CONDUCT.md \
-  $nd/.github/CONTRIBUTING.md
+  /.github/CODE-OF-CONDUCT.md \
+  /.github/CONTRIBUTING.md
 
 ## root
 mkdir \
-  $nd/client \
-  $nd/src \
+  /client \
+  /src \
 
 touch \
-  $nd/client/.gitkeep \
-  $nd/src/.gitkeep \
-  $nd/test/.gitkeep
+  /client/.gitkeep \
+  /src/.gitkeep \
+  /test/.gitkeep
 
 touch \
-  $nd/.azureup.yaml \
-  $nd/.dockerignore \
-  $nd/.editorconfig \
-  $nd/.gitignore \
-  $nd/.markdownlint.yaml \
-  $nd/CHANGELOG.md \
-  $nd/LICENSE.txt \
-  $nd/README.md
+  /.azureup.yaml \
+  /.dockerignore \
+  /.editorconfig \
+  /.gitignore \
+  /.markdownlint.yaml \
+  /CHANGELOG.md \
+  /LICENSE.txt \
+  /README.md
 
 # set up new npm package with a default package.json file
 # https://docs.npmjs.com/cli/init
