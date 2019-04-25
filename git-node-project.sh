@@ -11,6 +11,7 @@ if [ -z "$(which git)" ] && [ -z "$(which node)" ]; then
   exit 1
 fi
 
+cd ~
 ## ensure a directory and make one if necessary
 nd=$1
 
