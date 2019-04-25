@@ -1,36 +1,38 @@
 #!/bin/bash
 
-##check for git and node
+## Requirement 2 ##
+# automate the process of setting up a new git project repository structure
+# include: verify req-1 is valid, create web node-based project
 
-# The Linux which command is used to find the location of a program
-# -z checks for an empty string
+# the name of the directory that you put as an argument
+directory=$1
 
-# if [ $(node -v) !=~ (11.14.0)]; then
+# the user.name and user.email used to do the git config to hook up your get repo to this directory
+user_name=$2
+user_email=$3
+
+
+## verify git and node are installed
 if [ -z "$(which git)" ] && [ -z "$(which node)" ]; then
-  echo "get git and/or node"
-  exit 1
+    echo "the environment for this script is not set up yet"
+    exit 1
 fi
 
-## ensure a directory and make one if necessary
-nd=$1
 
-if ! [ -d $nd ]; then
-  mkdir $nd
-  exit 1
+
+## checks to see if directory exist
+if ! [ -d "$directory" ]; then
+    mkdir $directory
 fi
 
 ## checks to see if things are in the directory 
-## -a means it shows all items in the directory
-if [ -n "$(ls -a $nd)" ]; then
+## -A means it shows all items in the directory
+if [ -n "$(ls -A $directory)" ]; then
     echo "this directory is not empty"
     exit 1
 fi
 
-# create a web node based project
-## docker
-cd $nd
-# set up new npm package with a default package.json file
-# https://docs.npmjs.com/cli/init
+cd $directory
 npm init
 
 ## directory strucker ## 
@@ -74,14 +76,9 @@ CHANGELOG.md \
 LICENSE.txt \
 README.md
 
-username=$2
-useremail=$3
-# initialize git and customize git environment.
-# Git is an open-source tool developers install locally to manage source code
-# git config lets you get and set configuration variables that control all aspects of how git operates
-# https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup
 git init
-git config --global $username
-git config --global $useremail
+git config $user_name
+git config $user_email
+
 
 exit 0
